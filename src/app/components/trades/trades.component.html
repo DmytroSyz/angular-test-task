@@ -1,0 +1,50 @@
+<div class="trades-wrapper">
+  <form [formGroup]="formGroup" class="enter-data-wrapper">
+    <mat-form-field appearance="fill">
+      <mat-label>Entry date</mat-label>
+      <input required formControlName="entryDate" matInput [matDatepicker]="entryDatePicker">
+      <mat-datepicker-toggle matSuffix [for]="entryDatePicker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #entryDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Entry price</mat-label>
+      <input required #entryPriceInput formControlName="entryPrice" placeholder="Enter price" matInput type="number"
+             min="0">
+      <mat-error *ngIf="formGroup.controls['entryPrice'].invalid">
+        Enter a valid price
+      </mat-error>
+    </mat-form-field>
+  </form>
+
+  <form class="exit-data-wrapper" [formGroup]="formGroup">
+    <mat-form-field appearance="fill">
+      <mat-label>Exit date</mat-label>
+      <input required [min]="formGroup.controls['entryDate'].value" formControlName="exitDate" matInput
+             [matDatepicker]="exitDatePicker">
+      <mat-datepicker-toggle matSuffix [for]="exitDatePicker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #exitDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Exit price</mat-label>
+      <input required #exitPriceInput formControlName="exitPrice" placeholder="Enter price" matInput type="number"
+             min="0">
+      <mat-error *ngIf="formGroup.controls['exitPrice'].invalid">
+        Enter a valid price
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+
+<div class="profit-wrapper">
+  <div class="error-wrapper">
+    <div class="error" *ngFor="let err of errorArr">{{err}}</div>
+  </div>
+  <span *ngIf="formGroup.controls['entryPrice'].valid && formGroup.controls['exitPrice'].valid" class="profit-value">
+    Profit: {{profit}}
+  </span>
+  <button class="apply-button" mat-raised-button color="primary" (click)="click()">Apply</button>
+</div>

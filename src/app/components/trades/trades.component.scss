@@ -1,0 +1,36 @@
+.trades-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  .enter-data-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .exit-data-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.profit-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .error-wrapper {
+    margin-bottom: 15px;
+    .error {
+      color: red;
+      margin: 5px;
+    }
+  }
+  .profit-value {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  .apply-button {
+    height: 50px;
+    width: 130px;
+  }
+}
